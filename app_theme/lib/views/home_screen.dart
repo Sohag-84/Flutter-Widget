@@ -4,6 +4,8 @@ import 'package:app_theme/theme/theme_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../widgets/custom_button.dart';
+
 class HomeScreen extends StatelessWidget {
    HomeScreen({Key? key}) : super(key: key);
 
@@ -74,6 +76,7 @@ class HomeScreen extends StatelessWidget {
               width: 100,
               color: Get.isDarkMode== true? Colors.grey: Colors.blue,
             ),
+            CustomButton()
           ],
         ),
       ),
