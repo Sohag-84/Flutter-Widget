@@ -32,6 +32,7 @@ class LoginScreen extends StatelessWidget {
                 iconPath: "assets/svgs/f_logo.svg",
                 label: "Continue with Facebook",
                 horizontalPadding: 90,
+                onPressed: () {},
               ),
               SizedBox(height: 15),
               Text("OR", style: TextStyle(fontSize: 17)),
