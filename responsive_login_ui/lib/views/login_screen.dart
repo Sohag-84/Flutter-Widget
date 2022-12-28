@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:responsive_login_ui/widgets/gradient_button.dart';
 import 'package:responsive_login_ui/widgets/login_field.dart';
 import 'package:responsive_login_ui/widgets/social_button.dart';
 
@@ -26,6 +27,7 @@ class LoginScreen extends StatelessWidget {
               SocialButton(
                 iconPath: "assets/svgs/g_logo.svg",
                 label: "Continue with Google",
+                onPressed: () {},
               ),
               SizedBox(height: 20),
               SocialButton(
@@ -41,6 +43,7 @@ class LoginScreen extends StatelessWidget {
               SizedBox(height: 15),
               LoginField(hintText: "Password"),
               SizedBox(height: 20),
+              GradientButton(),
             ],
           ),
         ),
