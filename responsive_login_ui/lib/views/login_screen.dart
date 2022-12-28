@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Image.asset("assets/images/signin_balls.png"),
+              Image.asset("assets/images/signin_balls.png",height: 80),
               Text(
                 "Sign in",
                 style: TextStyle(
@@ -23,13 +23,13 @@ class LoginScreen extends StatelessWidget {
                   fontSize: 50,
                 ),
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 30),
               SocialButton(
                 iconPath: "assets/svgs/g_logo.svg",
                 label: "Continue with Google",
                 onPressed: () {},
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               SocialButton(
                 iconPath: "assets/svgs/f_logo.svg",
                 label: "Continue with Facebook",
