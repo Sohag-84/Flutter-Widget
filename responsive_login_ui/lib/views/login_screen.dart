@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:responsive_login_ui/widgets/login_field.dart';
 import 'package:responsive_login_ui/widgets/social_button.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -34,6 +35,11 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 15),
               Text("OR", style: TextStyle(fontSize: 17)),
+              SizedBox(height: 15),
+              LoginField(hintText: "Email"),
+              SizedBox(height: 15),
+              LoginField(hintText: "Password"),
+              SizedBox(height: 20),
             ],
           ),
         ),
