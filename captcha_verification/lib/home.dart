@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
@@ -33,6 +34,7 @@ class _HomeState extends State<Home> {
       ),
     );
     setState(() {});
+    print(randomString);
   }
 
   @override
@@ -49,7 +51,7 @@ class _HomeState extends State<Home> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(15.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -95,6 +97,8 @@ class _HomeState extends State<Home> {
                 ),
                 hintText: "Enter Captcha Value",
                 labelText: "Enter Captcha Value",
+                labelStyle: const TextStyle(fontSize: 13),
+                hintStyle: const TextStyle(fontSize: 13),
               ),
               controller: controller,
             ),
@@ -106,7 +110,11 @@ class _HomeState extends State<Home> {
                 isVerified = controller.text == randomString;
 
                 setState(() {});
-                if (controller.text.trim().isEmpty) {}
+                if (!isVerified) {
+                  Fluttertoast.showToast(
+                    msg: "Please enter value you see on screen",
+                  );
+                }
               },
               child: Container(
                 height: 40,
@@ -138,8 +146,6 @@ class _HomeState extends State<Home> {
                   Text("Verified"),
                 ],
               )
-            else
-              const Text("Please enter value you see on screen"),
           ],
         ),
       ),
