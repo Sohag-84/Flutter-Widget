@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:product_order_app_task/common/list.dart';
 import 'package:product_order_app_task/common/widgets/product_card.dart';
+import 'package:product_order_app_task/data/local_preference.dart';
+import 'package:product_order_app_task/modules/auth/views/signin_view.dart';
 import 'package:product_order_app_task/modules/home/part/cart_icon_button.dart';
 import 'package:product_order_app_task/modules/profile/view/profile_view.dart';
 
@@ -27,7 +29,12 @@ class _HomeViewState extends State<HomeView> {
           cartIconButton(),
           IconButton(
             onPressed: () {
-              Get.to(() => const ProfileView());
+              final token = LocalPreferenceService.instance.getToken();
+              if (token.isNotEmpty) {
+                Get.to(() => const ProfileView());
+              } else {
+                Get.to(() => const SignInScreen());
+              }
             },
             icon: const Icon(Icons.person_2_outlined),
           ),

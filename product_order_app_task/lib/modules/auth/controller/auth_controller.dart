@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:product_order_app_task/data/local_preference.dart';
 import 'package:product_order_app_task/modules/home/view/home_view.dart';
 
 class AuthController extends GetxController {
@@ -23,12 +22,15 @@ class AuthController extends GetxController {
     }
     EasyLoading.show(status: "Loading....");
     try {
-      await _auth.createUserWithEmailAndPassword(
+      final user = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      Fluttertoast.showToast(msg: "Account created successfully!");
-      Get.offAll(() => const HomeView());
+      if (user.user?.uid != null) {
+        LocalPreferenceService.instance.setToken(token: user.user!.uid);
+        Fluttertoast.showToast(msg: "Account created successfully!");
+        Get.offAll(() => const HomeView());
+      }
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(msg: e.message ?? "Sign-Up Failed");
     } finally {
@@ -50,10 +52,11 @@ class AuthController extends GetxController {
         email: email,
         password: password,
       );
-
-      log("Access token: ${user.user!.uid}");
-      Fluttertoast.showToast(msg: "Login Successful!");
-      Get.offAll(() => const HomeView());
+      if (user.user?.uid != null) {
+        LocalPreferenceService.instance.setToken(token: user.user!.uid);
+        Fluttertoast.showToast(msg: "Login Successful!");
+        Get.offAll(() => const HomeView());
+      }
     } on FirebaseAuthException catch (e) {
       Fluttertoast.showToast(msg: e.message ?? "Login Failed");
     } finally {
@@ -64,6 +67,7 @@ class AuthController extends GetxController {
   Future<void> logout() async {
     await _auth.signOut();
     Fluttertoast.showToast(msg: "Logout Successfull");
+    LocalPreferenceService.instance.removeToken();
     Get.offAll(() => const HomeView());
   }
 

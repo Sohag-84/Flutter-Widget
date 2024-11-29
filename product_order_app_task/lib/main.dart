@@ -9,6 +9,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'data/cartlist/cartlist_model.dart';
+import 'data/local_preference.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -22,6 +23,8 @@ Future<void> main() async {
   ///for add to wishlist
   Hive.registerAdapter(HiveCartlistProductAdapter());
   await Hive.openBox<HiveCartlistProduct>("cart");
+  LocalPreferenceService.instance.init();
+
   runApp(const MyApp());
 }
 
