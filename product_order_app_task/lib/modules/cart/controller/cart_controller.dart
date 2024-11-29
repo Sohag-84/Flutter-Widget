@@ -1,8 +1,14 @@
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:product_order_app_task/common/const.dart';
 import 'package:product_order_app_task/data/cartlist/cart_box.dart';
 import 'package:product_order_app_task/data/cartlist/cartlist_model.dart';
+import 'package:product_order_app_task/data/local_preference.dart';
+import 'package:product_order_app_task/models/order_model.dart';
 import 'package:product_order_app_task/models/product.dart';
+import 'package:product_order_app_task/modules/home/view/home_view.dart';
+import 'package:uuid/uuid.dart';
 
 class CartController extends GetxController {
   final box = CartBoxes.getData();
@@ -73,13 +79,60 @@ class CartController extends GetxController {
     return total;
   }
 
+  ///delete specific cart item
   void deleteCartItem({required HiveCartlistProduct product}) async {
     await product.delete();
     update();
   }
 
+  ///delete full cart list
   void deleteCartList() async {
     await box.clear();
     update();
+  }
+
+  /// save order to Firebase under a specific user
+  Future<void> orderPlaced() async {
+    EasyLoading.show(status: "Loading....");
+    try {
+      final userId = LocalPreferenceService.instance.getToken();
+
+      // Create order details
+      final orderItems = box.values.map((product) {
+        return {
+          'id': product.id,
+          'name': product.name,
+          'price': product.price,
+          'quantity': product.cartQuantity,
+        };
+      }).toList();
+
+      final order = Order(
+        ///id->order id
+        id: const Uuid().v4(),
+        items: orderItems,
+        totalPrice: totalPrice(),
+        orderDate: DateTime.now(),
+        orderStatus: "Pending",
+      );
+
+      // Save the order under the user's document
+      await firestore
+          .collection('users')
+          .doc(userId)
+          .collection('orders')
+          .doc(order.id)
+          .set(order.toJson());
+
+      // Clear the cart after order placement
+      deleteCartList();
+
+      Fluttertoast.showToast(msg: "Order placed successfully!");
+      Get.offAll(() => const HomeView());
+    } catch (e) {
+      Fluttertoast.showToast(msg: "Failed to place order: $e");
+    } finally {
+      EasyLoading.dismiss();
+    }
   }
 }
