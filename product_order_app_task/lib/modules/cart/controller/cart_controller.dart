@@ -104,6 +104,7 @@ class CartController extends GetxController {
           'name': product.name,
           'price': product.price,
           'quantity': product.cartQuantity,
+          'image': product.img,
         };
       }).toList();
 
@@ -113,7 +114,7 @@ class CartController extends GetxController {
         items: orderItems,
         totalPrice: totalPrice(),
         orderDate: DateTime.now(),
-        orderStatus: "Pending",
+        orderStatus: "pending",
       );
 
       // Save the order under the user's document

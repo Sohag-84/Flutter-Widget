@@ -3,14 +3,14 @@ class Order {
   final List<Map<String, dynamic>> items;
   final double totalPrice;
   final DateTime orderDate;
-  String orderStatus;
+  final String orderStatus;
 
   Order({
     required this.id,
     required this.items,
     required this.totalPrice,
     required this.orderDate,
-    this.orderStatus = "Pending",
+    required this.orderStatus,
   });
 
   Map<String, dynamic> toJson() {
