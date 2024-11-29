@@ -6,6 +6,7 @@ import 'package:product_order_app_task/common/theme/color/colors.dart';
 import 'package:product_order_app_task/modules/home/view/home_view.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'data/cartlist/cartlist_model.dart';
 import 'firebase_options.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
                 iconTheme: const IconThemeData(color: Colors.white),
               ),
             ),
+            builder: EasyLoading.init(),
             home: const HomeView(),
           );
         });

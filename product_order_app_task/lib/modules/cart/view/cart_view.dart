@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:product_order_app_task/common/const.dart';
 import 'package:product_order_app_task/data/cartlist/cart_box.dart';
 import 'package:product_order_app_task/data/cartlist/cartlist_model.dart';
+import 'package:product_order_app_task/modules/auth/views/signin_view.dart';
 import 'package:product_order_app_task/modules/cart/widgets/subtotal_row.dart';
 
 import '../../../common/widgets/custom_button.dart';
@@ -81,7 +83,13 @@ class CartView extends StatelessWidget {
                         customButton(
                           height: 48.h,
                           fontSize: 14,
-                          onTap: () {},
+                          onTap: () {
+                            if (currentUser != null) {
+                              print("User found");
+                            } else {
+                              Get.to(() => const SignInScreen());
+                            }
+                          },
                           btnText: "Pay Now",
                         ),
                         SizedBox(height: 10.h),

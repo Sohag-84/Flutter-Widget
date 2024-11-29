@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:product_order_app_task/common/utils/utils.dart';
 import 'package:product_order_app_task/common/widgets/custom_button.dart';
+import 'package:product_order_app_task/modules/auth/controller/auth_controller.dart';
 import 'package:product_order_app_task/modules/auth/views/signup_view.dart';
 import 'package:product_order_app_task/modules/auth/widgets/custom_textfield.dart';
 
@@ -17,6 +18,7 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final controller = Get.put(AuthController());
 
   @override
   void dispose() {
@@ -61,10 +63,16 @@ class _SignInScreenState extends State<SignInScreen> {
                       customTextField(
                         textController: passwordController,
                         hintText: "Password",
+                        obscureText: true,
                       ),
                       const SizedBox(height: 20.0),
                       customButton(
-                        onTap: () {},
+                        onTap: () async {
+                          await controller.signIn(
+                            email: emailController.text,
+                            password: passwordController.text,
+                          );
+                        },
                         btnText: "Sign In",
                         height: 45,
                       ),
