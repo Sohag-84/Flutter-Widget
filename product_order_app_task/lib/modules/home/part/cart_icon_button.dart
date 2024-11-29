@@ -28,7 +28,7 @@ Widget cartIconButton() {
           ),
           child: IconButton(
             onPressed: () {
-              Get.to(() => const CartView());
+              Get.to(() => CartView());
             },
             icon: const Icon(Icons.shopping_cart_outlined),
           ),
