@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:product_order_app_task/common/list.dart';
 import 'package:product_order_app_task/common/widgets/product_card.dart';
 import 'package:product_order_app_task/modules/home/part/cart_icon_button.dart';
+import 'package:product_order_app_task/modules/profile/view/profile_view.dart';
 
 import '../../cart/controller/cart_controller.dart';
 
@@ -25,7 +25,12 @@ class _HomeViewState extends State<HomeView> {
         title: const Text("Product"),
         actions: [
           cartIconButton(),
-          SizedBox(width: 10.w),
+          IconButton(
+            onPressed: () {
+              Get.to(() => const ProfileView());
+            },
+            icon: const Icon(Icons.person_2_outlined),
+          ),
         ],
       ),
       body: SafeArea(

@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -43,10 +46,12 @@ class AuthController extends GetxController {
     }
     EasyLoading.show(status: "Loading....");
     try {
-      await _auth.signInWithEmailAndPassword(
+      final user = await _auth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+
+      log("Access token: ${user.user!.uid}");
       Fluttertoast.showToast(msg: "Login Successful!");
       Get.offAll(() => const HomeView());
     } on FirebaseAuthException catch (e) {
@@ -54,6 +59,12 @@ class AuthController extends GetxController {
     } finally {
       EasyLoading.dismiss();
     }
+  }
+
+  Future<void> logout() async {
+    await _auth.signOut();
+    Fluttertoast.showToast(msg: "Logout Successfull");
+    Get.offAll(() => const HomeView());
   }
 
   /// Email Validation
