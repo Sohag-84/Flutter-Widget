@@ -109,7 +109,7 @@ class CartController extends GetxController {
 
       final order = Order(
         ///id->order id
-        id: const Uuid().v4(),
+        id: const Uuid().v4().substring(0, 10),
         items: orderItems,
         totalPrice: totalPrice(),
         orderDate: DateTime.now(),

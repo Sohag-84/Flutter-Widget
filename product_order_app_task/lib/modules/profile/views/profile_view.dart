@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:product_order_app_task/modules/auth/controller/auth_controller.dart';
+import 'package:product_order_app_task/modules/profile/views/my_order_view.dart';
 import '../part/profile_pic_section.dart';
 import '../widgets/porfile_menu.dart';
 
@@ -30,7 +31,9 @@ class _ProfileViewState extends State<ProfileView> {
             ProfileMenu(
               text: "My Oder",
               icon: Icons.storefront_outlined,
-              press: () {},
+              press: () {
+                Get.to(() => MyOrderView());
+              },
             ),
             ProfileMenu(
               text: "Notifications",

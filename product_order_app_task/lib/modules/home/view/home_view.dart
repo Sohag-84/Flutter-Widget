@@ -5,7 +5,7 @@ import 'package:product_order_app_task/common/widgets/product_card.dart';
 import 'package:product_order_app_task/data/local_preference.dart';
 import 'package:product_order_app_task/modules/auth/views/signin_view.dart';
 import 'package:product_order_app_task/modules/home/part/cart_icon_button.dart';
-import 'package:product_order_app_task/modules/profile/view/profile_view.dart';
+import 'package:product_order_app_task/modules/profile/views/profile_view.dart';
 
 import '../../cart/controller/cart_controller.dart';
 

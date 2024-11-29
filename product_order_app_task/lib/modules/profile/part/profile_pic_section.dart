@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:product_order_app_task/data/local_preference.dart';
 
 class ProfilePic extends StatelessWidget {
   const ProfilePic({
@@ -40,7 +42,18 @@ class ProfilePic extends StatelessWidget {
                 ),
               ),
             ),
-          )
+          ),
+          Positioned(
+            bottom: -20,
+            child: Text(
+              LocalPreferenceService.instance.getEmail(),
+              style: TextStyle(
+                fontSize: 13.sp,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey,
+              ),
+            ),
+          ),
         ],
       ),
     );
