@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive/hive.dart';
 import 'package:product_order_app_task/common/theme/color/colors.dart';
 import 'package:product_order_app_task/modules/home/view/home_view.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 
-void main() {
+import 'data/cartlist/cartlist_model.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var directory = await getApplicationDocumentsDirectory();
+  Hive.init(directory.path);
+
+  ///for add to wishlist
+  Hive.registerAdapter(HiveCartlistProductAdapter());
+  await Hive.openBox<HiveCartlistProduct>("cart");
   runApp(const MyApp());
 }
 
@@ -20,9 +31,9 @@ class MyApp extends StatelessWidget {
             title: 'Product Order',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              scaffoldBackgroundColor: AppColors.primaryColor,
+              scaffoldBackgroundColor: AppColors.bgColor,
               appBarTheme: AppBarTheme(
-                backgroundColor: Colors.red,
+                backgroundColor: AppColors.primaryColor,
                 centerTitle: true,
                 titleTextStyle: TextStyle(
                   fontSize: 20.sp,

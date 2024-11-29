@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:product_order_app_task/common/list.dart';
 import 'package:product_order_app_task/common/widgets/product_card.dart';
+import 'package:product_order_app_task/modules/home/part/cart_icon_button.dart';
 
-class HomeView extends StatelessWidget {
+import '../../cart/controller/cart_controller.dart';
+
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -11,6 +23,10 @@ class HomeView extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Product"),
+        actions: [
+          cartIconButton(),
+          SizedBox(width: 10.w),
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -25,7 +41,11 @@ class HomeView extends StatelessWidget {
             ),
             itemBuilder: (context, index) => ProductCard(
               product: productList[index],
-              cartPress: () {},
+              cartPress: () {
+                cartController.addToCart(
+                  product: productList[index],
+                );
+              },
             ),
           ),
         ),
