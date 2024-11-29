@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:product_order_app_task/common/theme/color/colors.dart';
 import 'package:product_order_app_task/modules/home/view/home_view.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,12 +16,21 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
         designSize: const Size(360, 800),
         builder: (context, child) {
-          return MaterialApp(
+          return GetMaterialApp(
             title: 'Product Order',
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
+              scaffoldBackgroundColor: AppColors.primaryColor,
+              appBarTheme: AppBarTheme(
+                backgroundColor: Colors.red,
+                centerTitle: true,
+                titleTextStyle: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.white,
+                ),
+                iconTheme: const IconThemeData(color: Colors.white),
+              ),
             ),
             home: const HomeView(),
           );
