@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:product_order_app_task/common/theme/color/colors.dart';
+import 'package:product_order_app_task/data/wishlist/wishlist_model.dart';
 import 'package:product_order_app_task/modules/home/view/home_view.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
@@ -20,9 +21,13 @@ Future<void> main() async {
   var directory = await getApplicationDocumentsDirectory();
   Hive.init(directory.path);
 
-  ///for add to wishlist
+  ///for add to cart
   Hive.registerAdapter(HiveCartlistProductAdapter());
   await Hive.openBox<HiveCartlistProduct>("cart");
+
+  ///for add to wishlist
+  Hive.registerAdapter(HiveWishlistProductAdapter());
+  await Hive.openBox<HiveWishlistProduct>("wishlist");
   LocalPreferenceService.instance.init();
 
   runApp(const MyApp());

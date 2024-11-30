@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:product_order_app_task/common/asset/assets.dart';
 import 'package:product_order_app_task/common/utils/utils.dart';
 import 'package:product_order_app_task/common/widgets/custom_button.dart';
 import 'package:product_order_app_task/models/product.dart';
+import 'package:product_order_app_task/modules/profile/controller/profile_controller.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -48,30 +50,48 @@ class ProductCard extends StatelessWidget {
                 color: Color(0xFFFF7643),
               ),
             ),
-            InkWell(
-              borderRadius: BorderRadius.circular(50),
-              onTap: () {},
-              child: Container(
-                padding: const EdgeInsets.all(6),
-                height: 24,
-                width: 24,
-                decoration: BoxDecoration(
-                  color: product.isFavourite
-                      ? const Color(0xFFFF7643).withOpacity(0.15)
-                      : const Color(0xFF979797).withOpacity(0.1),
-                  shape: BoxShape.circle,
-                ),
-                child: SvgPicture.string(
-                  heartIcon,
-                  colorFilter: ColorFilter.mode(
-                    product.isFavourite
-                        ? const Color(0xFFFF4848)
-                        : const Color(0xFFDBDEE4),
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-            ),
+            GetBuilder<ProfileController>(
+                init: ProfileController(),
+                builder: (ProfileController controller) {
+                  final data = product;
+                  final isFavorite = controller.box.values.any(
+                    (item) => item.id == data.id,
+                  );
+                  return InkWell(
+                    borderRadius: BorderRadius.circular(50),
+                    onTap: () {
+                      if (isFavorite) {
+                        controller.deleteWishlistItem(
+                          productId: data.id,
+                        );
+                      } else {
+                        controller.addToWishlist(
+                          product: product,
+                        );
+                      }
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(6),
+                      height: 24,
+                      width: 24,
+                      decoration: BoxDecoration(
+                        color: isFavorite
+                            ? const Color(0xFFFF7643).withOpacity(0.15)
+                            : const Color(0xFF979797).withOpacity(0.1),
+                        shape: BoxShape.circle,
+                      ),
+                      child: SvgPicture.string(
+                        heartIcon,
+                        colorFilter: ColorFilter.mode(
+                          isFavorite
+                              ? const Color(0xFFFF4848)
+                              : const Color(0xFFDBDEE4),
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                  );
+                }),
           ],
         ),
         SizedBox(height: 5.h),

@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'cartlist_model.dart';
+part of 'wishlist_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class HiveCartlistProductAdapter extends TypeAdapter<HiveCartlistProduct> {
+class HiveWishlistProductAdapter extends TypeAdapter<HiveWishlistProduct> {
   @override
-  final int typeId = 1;
+  final int typeId = 0;
 
   @override
-  HiveCartlistProduct read(BinaryReader reader) {
+  HiveWishlistProduct read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return HiveCartlistProduct(
+    return HiveWishlistProduct(
       id: fields[0] as int,
       name: fields[1] as String,
       img: fields[3] as String,
@@ -26,7 +26,7 @@ class HiveCartlistProductAdapter extends TypeAdapter<HiveCartlistProduct> {
   }
 
   @override
-  void write(BinaryWriter writer, HiveCartlistProduct obj) {
+  void write(BinaryWriter writer, HiveWishlistProduct obj) {
     writer
       ..writeByte(5)
       ..writeByte(0)
@@ -47,7 +47,7 @@ class HiveCartlistProductAdapter extends TypeAdapter<HiveCartlistProduct> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is HiveCartlistProductAdapter &&
+      other is HiveWishlistProductAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
