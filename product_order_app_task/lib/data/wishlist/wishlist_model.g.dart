@@ -19,7 +19,7 @@ class HiveWishlistProductAdapter extends TypeAdapter<HiveWishlistProduct> {
     return HiveWishlistProduct(
       id: fields[0] as int,
       name: fields[1] as String,
-      img: fields[3] as String,
+      images: fields[3] as String,
       price: fields[2] as String,
       cartQuantity: fields[4] as int,
     );
@@ -36,7 +36,7 @@ class HiveWishlistProductAdapter extends TypeAdapter<HiveWishlistProduct> {
       ..writeByte(2)
       ..write(obj.price)
       ..writeByte(3)
-      ..write(obj.img)
+      ..write(obj.images)
       ..writeByte(4)
       ..write(obj.cartQuantity);
   }

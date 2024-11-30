@@ -18,7 +18,7 @@ class ProfileController extends GetxController {
       final data = HiveWishlistProduct(
         id: product.id,
         name: product.name,
-        img: product.images,
+        images: product.images,
         price: product.price.toString(),
       );
       box.add(data);

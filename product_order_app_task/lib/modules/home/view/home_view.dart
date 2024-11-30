@@ -51,14 +51,17 @@ class _HomeViewState extends State<HomeView> {
               mainAxisSpacing: 8,
               crossAxisSpacing: 12,
             ),
-            itemBuilder: (context, index) => ProductCard(
-              product: productList[index],
-              cartPress: () {
-                cartController.addToCart(
-                  product: productList[index],
-                );
-              },
-            ),
+            itemBuilder: (context, index) {
+              final product = productList[index];
+              return ProductCard(
+                product: product,
+                cartPress: () {
+                  cartController.addToCart(
+                    product: product,
+                  );
+                },
+              );
+            },
           ),
         ),
       ),

@@ -6,7 +6,6 @@ import 'package:product_order_app_task/data/cartlist/cart_box.dart';
 import 'package:product_order_app_task/data/cartlist/cartlist_model.dart';
 import 'package:product_order_app_task/data/local_preference.dart';
 import 'package:product_order_app_task/models/order_model.dart';
-import 'package:product_order_app_task/models/product.dart';
 import 'package:product_order_app_task/modules/home/view/home_view.dart';
 import 'package:uuid/uuid.dart';
 
@@ -14,11 +13,7 @@ class CartController extends GetxController {
   final box = CartBoxes.getData();
 
   ///add to cart
-  void addToCart({required Product product}) {
-    if (product.stock <= 0) {
-      Fluttertoast.showToast(msg: "Product Stockout");
-      return;
-    }
+  void addToCart({required product}) {
     final existingIndex = box.values.toList().indexWhere(
           (item) => item.id == product.id,
         );
@@ -33,7 +28,6 @@ class CartController extends GetxController {
       );
       box.add(data);
       data.save();
-      product.stock--;
       Fluttertoast.showToast(msg: "Add to cart");
     }
     update();

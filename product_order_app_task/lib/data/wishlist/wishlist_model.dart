@@ -13,7 +13,7 @@ class HiveWishlistProduct extends HiveObject {
   String price;
 
   @HiveField(3)
-  String img;
+  String images;
 
   @HiveField(4)
   int cartQuantity;
@@ -21,7 +21,7 @@ class HiveWishlistProduct extends HiveObject {
   HiveWishlistProduct({
     required this.id,
     required this.name,
-    required this.img,
+    required this.images,
     required this.price,
     this.cartQuantity = 1,
   });

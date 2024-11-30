@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:product_order_app_task/common/theme/color/colors.dart';
+import 'package:product_order_app_task/common/utils/utils.dart';
 import 'quantity_icon_button.dart';
 
 Container cartContainer({
@@ -31,8 +32,8 @@ Container cartContainer({
     ),
     child: Row(
       children: [
-        Image.network(
-          img,
+        customImage(
+          imagePath: img,
           height: 100.h,
           width: 100.w,
         ),

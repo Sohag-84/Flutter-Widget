@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:product_order_app_task/modules/auth/controller/auth_controller.dart';
 import 'package:product_order_app_task/modules/profile/views/my_order_view.dart';
+import 'package:product_order_app_task/modules/profile/views/wishlist_view.dart';
 import '../part/profile_pic_section.dart';
 import '../widgets/porfile_menu.dart';
 
@@ -35,14 +36,17 @@ class _ProfileViewState extends State<ProfileView> {
                 Get.to(() => MyOrderView());
               },
             ),
+            ///wishlist
+            ProfileMenu(
+              text: "Wishlist",
+              icon: Icons.favorite_border,
+              press: () {
+                Get.to(()=>WishlistView());
+              },
+            ),
             ProfileMenu(
               text: "Notifications",
               icon: Icons.notifications_none_outlined,
-              press: () {},
-            ),
-            ProfileMenu(
-              text: "Settings",
-              icon: Icons.settings_outlined,
               press: () {},
             ),
             ProfileMenu(
