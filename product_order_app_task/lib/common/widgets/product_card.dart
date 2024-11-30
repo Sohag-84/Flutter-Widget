@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:product_order_app_task/common/asset/assets.dart';
+import 'package:product_order_app_task/common/utils/utils.dart';
 import 'package:product_order_app_task/common/widgets/custom_button.dart';
 import 'package:product_order_app_task/models/product.dart';
 
@@ -28,7 +29,7 @@ class ProductCard extends StatelessWidget {
             color: const Color(0xFF979797).withOpacity(0.1),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Image.network(product.images),
+          child: customImage(imagePath: product.images),
         ),
         const SizedBox(height: 8),
         Text(

@@ -3,7 +3,7 @@ class Product {
   final String name, description;
   final String images;
   final double rating, price;
-  final int stock;
+  int stock;
   final bool isFavourite;
 
   Product({

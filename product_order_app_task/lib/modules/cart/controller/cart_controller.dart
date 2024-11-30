@@ -15,6 +15,10 @@ class CartController extends GetxController {
 
   ///add to cart
   void addToCart({required Product product}) {
+    if (product.stock <= 0) {
+      Fluttertoast.showToast(msg: "Product Stockout");
+      return;
+    }
     final existingIndex = box.values.toList().indexWhere(
           (item) => item.id == product.id,
         );
@@ -29,7 +33,7 @@ class CartController extends GetxController {
       );
       box.add(data);
       data.save();
-
+      product.stock--;
       Fluttertoast.showToast(msg: "Add to cart");
     }
     update();

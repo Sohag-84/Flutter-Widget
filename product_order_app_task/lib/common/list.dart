@@ -9,8 +9,7 @@ List<Product> productList = [
     price: 64.00,
     description: description,
     rating: 4.8,
-    isFavourite: true,
-    stock: 100,
+    stock: 1,
   ),
   Product(
     id: 2,
@@ -19,7 +18,6 @@ List<Product> productList = [
     price: 50.0,
     description: description,
     rating: 4.1,
-    isFavourite: true,
     stock: 70,
   ),
   Product(
@@ -29,7 +27,6 @@ List<Product> productList = [
     price: 36.00,
     description: description,
     rating: 4.1,
-    isFavourite: true,
     stock: 150,
   ),
   Product(
@@ -39,7 +36,47 @@ List<Product> productList = [
     price: 36.00,
     description: description,
     rating: 4.1,
-    isFavourite: true,
     stock: 320,
+  ),
+  Product(
+    id: 5,
+    images:
+        "https://firebasestorage.googleapis.com/v0/b/doctor-app-ba4dc.appspot.com/o/another%20app%20image%2Fhead_phone.png?alt=media&token=41dde2c8-5bc4-412c-a818-897e28239990",
+    name: "A4TECH HS-28 Comport Stereo Headphone",
+    price: 100.00,
+    description: description,
+    rating: 4.1,
+    stock: 320,
+  ),
+  Product(
+    id: 6,
+    images:
+        "https://firebasestorage.googleapis.com/v0/b/doctor-app-ba4dc.appspot.com/o/another%20app%20image%2Fcamera.png?alt=media&token=1fa7830d-f82e-4a42-aa20-5e3358dca426",
+    name: "Canon EOS 2000D 24.1MP Full HD WI-FI DSLR Camera with",
+    price: 500.00,
+    description: description,
+    rating: 4.1,
+    stock: 70,
+  ),
+  Product(
+    id: 7,
+    images:
+        "https://firebasestorage.googleapis.com/v0/b/doctor-app-ba4dc.appspot.com/o/another%20app%20image%2Flaptop.png?alt=media&token=57a4d60c-42d6-472b-9beb-f4cd3ad64c5f",
+    name: "Lenovo Legion 7 16ACHg6 Ryzen 7 5800H RTX 3080 16GB Graphics 16GB",
+    price: 1500.00,
+    description: description,
+    rating: 4.1,
+    stock: 70,
+  ),
+  Product(
+    id: 8,
+    images:
+        "https://firebasestorage.googleapis.com/v0/b/doctor-app-ba4dc.appspot.com/o/another%20app%20image%2Fkeyboard.png?alt=media&token=a8e3e918-5230-41ee-a6bc-671f0f7f1431",
+    name:
+        "Logitech K380S PEBBLE KEYS 2 Multi-Device Bluetooth Wireless Keyboard",
+    price: 300.00,
+    description: description,
+    rating: 4.1,
+    stock: 70,
   ),
 ];
