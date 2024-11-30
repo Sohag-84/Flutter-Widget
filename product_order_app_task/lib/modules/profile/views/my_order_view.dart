@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:product_order_app_task/common/theme/color/colors.dart';
 import 'package:product_order_app_task/models/order_model.dart';
 import 'package:product_order_app_task/modules/profile/views/order_details_view.dart';
 import 'package:product_order_app_task/services/order_services.dart';
-import 'package:intl/intl.dart';
 
 import '../../cart/controller/cart_controller.dart';
 import '../widgets/custom_order_row.dart';
@@ -77,9 +77,21 @@ class MyOrderView extends StatelessWidget {
                             title: "Status:",
                             status: order.orderStatus,
                           ),
+                          customOrderRow(
+                            title: "Total:",
+                            status: "৳ ${order.totalPrice}",
+                          ),
                         ],
                       ),
-                      Text("৳ ${order.totalPrice}"),
+                      Text(
+                        "View",
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          color: Colors.blue,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
                     ],
                   ),
                 ),
